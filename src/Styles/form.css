@@ -21,6 +21,7 @@
 .title {
     margin-bottom: 1rem;
     text-align: center;
+    color: #0c7db1;
 }
 
 form {
@@ -52,7 +53,7 @@ input {
     width: 100%;
     margin-top: 1rem;
     padding: 0.6rem 0;
-    background-color: #2196F3;
+    background-color: #0c7db1;
     border: none;
     outline: none;
     color: white;

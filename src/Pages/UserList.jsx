@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../Styles/uselist.css'
+import { AiFillDelete } from "react-icons/ai";
+import { FaEdit } from "react-icons/fa";
 
 const UserList = () => {
     const navigation = useNavigate()
@@ -10,7 +12,6 @@ const UserList = () => {
     const ApiData = async () => {
         try {
             const res = await axios.get('http://localhost:4000/employees')
-            // console.log(res.data);
             setEmployeeData(res.data)
         } catch (error) {
             console.log(error);
@@ -19,14 +20,17 @@ const UserList = () => {
 
     const handleDelete = async (id) => {
         try {
-            // debugger
             await axios.delete(`http://localhost:4000/employees/${id}`)
-            // console.log(deleteData);
         } catch (error) {
             console.log(error);
         }
         const deleteData = employeeData.filter((element) => element.id !== id)
         setEmployeeData(deleteData)
+    }
+
+    const handleEdit = (id) => {
+        console.log(id);
+        navigation(`/editData/${id}`)
     }
 
     useEffect(() => {
@@ -37,32 +41,34 @@ const UserList = () => {
         <>
             <div className="userlist">
                 <div className="userlist-container">
-                    <h1 className="userlist-title">Crud Operation Using React Js</h1>
-                    <button onClick={() => navigation('/form')} className="userlist-btn">Add Employee Data</button>
-                    <h2 className="userlist-title">Employee Table Data</h2>
+                    <h1 className="userlist-title"><u>Employee Data List</u></h1>
+                    <button onClick={() => navigation('/addData')} className="userlist-btn">Add Employee Data</button>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Location</th>
-                                <th>Designation</th>
-                                <th>Update</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {employeeData.map((element) => (
+                    {employeeData.length > 0 ?
+                        <table className="table">
+                            <thead>
                                 <tr>
-                                    <td>{element.name}</td>
-                                    <td>{element.location}</td>
-                                    <td>{element.designation}</td>
-                                    <td>Edit</td>
-                                    <td onClick={() => handleDelete(element.id)}>Delete</td>
+                                    <th>Name</th>
+                                    <th>Location</th>
+                                    <th>Designation</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {employeeData.map((element) => (
+                                    <tr>
+                                        <td>{element.name}</td>
+                                        <td>{element.location}</td>
+                                        <td>{element.designation}</td>
+                                        <td onClick={() => handleEdit(element.id)}><FaEdit color="#10558d" fontSize="1.5em" /></td>
+                                        <td onClick={() => handleDelete(element.id)}><AiFillDelete color="red" fontSize="1.5em" /></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        : <h2 className="userlist-title" style={{ color: '#ff2e2e' }}>no data found</h2>
+                    }
                 </div>
             </div>
         </>

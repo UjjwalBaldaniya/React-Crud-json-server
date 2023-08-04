@@ -1,31 +1,27 @@
 .userlist {
-    /* background-color: yellow; */
     display: flex;
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-color: aliceblue;
 }
 
 .userlist-container {
     width: 50%;
-    /* background-color: red; */
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     flex-direction: column;
 }
 
 .userlist-title {
     margin-top: 2rem;
-    /* font-weight: bold; */
+    color: #10558d;
 }
 
 .userlist-btn {
-    width: 30%;
+    width: 25%;
     margin-top: 2rem;
     padding: 0.6rem 0;
-    background-color: #2196F3;
+    background-color: #0c7db1;
     border: none;
     outline: none;
     color: white;
@@ -38,7 +34,7 @@
 table {
     width: 100%;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 table,
@@ -47,7 +43,18 @@ td {
     border: 1px solid black;
 }
 
-th,
+.table {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: aliceblue;
+}
+
+th {
+    background-color: #198450;
+    color: white;
+    padding: 15px 20px;
+}
+
 td {
+    background-color: rgb(230, 239, 248);
     padding: 10px 20px;
 }
