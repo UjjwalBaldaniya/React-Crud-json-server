@@ -35,9 +35,13 @@ const AddData = () => {
         }
     }
 
+    const handleNavigate = () => {
+        navigation('/home')
+    }
+
     return (
         <>
-            <FormTable handleSubmit={handleSubmit} handleChange={handleChange} inputField={inputField} name={'Add'} disabled={!inputField.name.length || !inputField.location.length || !inputField.designation.length} />
+            <FormTable handleSubmit={handleSubmit} handleChange={handleChange} inputField={inputField} name={'Add'} handleNavigate={handleNavigate} disabled={!inputField.name.length || !inputField.location.length || !inputField.designation.length} />
         </>
     )
 };

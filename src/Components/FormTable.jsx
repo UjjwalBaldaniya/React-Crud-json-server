@@ -1,8 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const FormTable = ({ handleSubmit, handleChange, inputField, name, disabled }) => {
-    const navigation = useNavigate()
+const FormTable = ({ handleSubmit, handleChange, inputField, name, disabled, handleNavigate }) => {
     return (
         <>
             <div className="employee-form">
@@ -25,7 +23,7 @@ const FormTable = ({ handleSubmit, handleChange, inputField, name, disabled }) =
                         <button type="submit" className="btn" disabled={disabled}>{name} Employee Data</button>
                     </form>
                     
-                    <button className="btn" onClick={() => navigation('/')} style={{ backgroundColor: '#ff1d18' }}>Cancel</button>
+                    <button className="btn" onClick={handleNavigate} style={{ backgroundColor: '#ff1d18' }}>Cancel</button>
                 </div>
             </div>
         </>
