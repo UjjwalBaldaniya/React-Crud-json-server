@@ -4,6 +4,7 @@ import axios from "axios";
 import '../Styles/uselist.css'
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
+import { getUrl } from "../Services/Employees";
 
 const UserList = () => {
     const navigation = useNavigate()
@@ -13,9 +14,9 @@ const UserList = () => {
 
     const ApiData = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/employees')
+            const res = await axios.get(`${getUrl}/employees`)
             setEmployeeData(res.data)
-            console.log(res.data);
+            // console.log(res.data);
 
         } catch (error) {
             console.log(error);
@@ -25,7 +26,7 @@ const UserList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/employees/${id}`)
+            await axios.delete(`${getUrl}/employees/${id}`)
         } catch (error) {
             console.log(error);
         }
@@ -34,7 +35,7 @@ const UserList = () => {
     }
 
     const handleEdit = (id) => {
-        console.log(id);
+        // console.log(id);
         navigation(`/editData/${id}`)
     }
 

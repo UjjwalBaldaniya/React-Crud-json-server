@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import FormTable from "../Components/FormTable";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { getUrl } from "../Services/Employees";
 
 const EditData = () => {
     const params = useParams()
     const navigation = useNavigate()
-    const [inputField, setInputField] = useState([]);
+    const [inputField, setInputField] = useState({
+        name: "",
+        location: "",
+        designation: "",
+    });
 
     const fetchData = async () => {
         try {
-            const res = await axios.get(`http://localhost:4000/employees/${params.id}`)
+            const res = await axios.get(`${getUrl}/employees/${params.id}`)
             setInputField(res.data)
-            console.log(res.data);
+            // console.log(res.data);
         } catch (error) {
             console.log(error);
         }
@@ -24,7 +29,7 @@ const EditData = () => {
 
     const updateData = async () => {
         try {
-            const res = await axios.patch(`http://localhost:4000/employees/${params.id}`, inputField)
+            const res = await axios.patch(`${getUrl}/employees/${params.id}`, inputField)
             console.log(res);
         } catch (error) {
             console.log(error);
@@ -33,7 +38,7 @@ const EditData = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(inputField);
+        // console.log(inputField);
         updateData()
         navigation('/')
     }
@@ -51,12 +56,11 @@ const EditData = () => {
 
     return (
         <>
-            <FormTable handleSubmit={handleSubmit} handleChange={handleChange} inputField={inputField} name={'Edit'} handleNavigate={handleNavigate} />
+            <FormTable handleSubmit={handleSubmit} handleChange={handleChange} inputField={inputField} btnName={'Edit'} handleNavigate={handleNavigate} />
         </>
     )
 };
 
 export default EditData;
-
 
 // export const getEmployee=(id)=>`http://localhost:4000/employees${id}`

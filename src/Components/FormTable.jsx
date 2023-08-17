@@ -1,6 +1,31 @@
 import React from "react";
+import InputField from "./InputField";
 
-const FormTable = ({ handleSubmit, handleChange, inputField, name, disabled, handleNavigate }) => {
+const inputs = [
+    {
+        id: 1,
+        name: "name",
+        type: "text",
+        placeholder: "Enter name",
+        lable: "Name of Employee :- "
+    },
+    {
+        id: 2,
+        name: "location",
+        type: "text",
+        placeholder: "Enter location",
+        lable: "location :- "
+    },
+    {
+        id: 3,
+        name: "designation",
+        type: "text",
+        placeholder: "Enter designation",
+        lable: "designation :- "
+    },
+]
+
+const FormTable = ({ handleSubmit, handleChange, inputField, btnName, disabled, handleNavigate }) => {
     return (
         <>
             <div className="employee-form">
@@ -8,19 +33,12 @@ const FormTable = ({ handleSubmit, handleChange, inputField, name, disabled, han
                     <h1 className="title">Employee Form</h1>
 
                     <form id="form" onSubmit={handleSubmit}>
-                        <div className="input-div">
-                            <label>Name of Employee :- </label>
-                            <input type="text" placeholder="Enter name" name="name" value={inputField.name} onChange={handleChange} />
-                        </div>
-                        <div className="input-div">
-                            <label>Location :- </label>
-                            <input type="text" placeholder="Enter location" name="location" value={inputField.location} onChange={handleChange} />
-                        </div>
-                        <div className="input-div">
-                            <label>Designation :- </label>
-                            <input type="text" placeholder="Enter designation" name="designation" value={inputField.designation} onChange={handleChange} />
-                        </div>
-                        <button type="submit" className="btn" disabled={disabled}>{name} Employee Data</button>
+                        {
+                            inputs.map((input) => (
+                                <InputField key={input.id} name={input.name} type={input.type} placeholder={input.placeholder} lable={input.lable} value={inputField[input.name]} handleChange={handleChange} />
+                            ))
+                        }
+                        <button type="submit" className="btn" disabled={disabled}>{btnName} Employee Data</button>
                     </form>
 
                     <button className="btn" onClick={handleNavigate} style={{ backgroundColor: '#ff1d18' }}>Cancel</button>

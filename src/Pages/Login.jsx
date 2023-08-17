@@ -1,6 +1,24 @@
 import React, { useState } from "react";
 import '../Styles/login.css'
 import { useNavigate } from "react-router-dom";
+import InputField from "../Components/InputField";
+
+const inputs = [
+    {
+        id: 1,
+        name: "email",
+        type: "email",
+        placeholder: "enter email...",
+        lable: "Email id :- "
+    },
+    {
+        id: 2,
+        name: "password",
+        type: "password",
+        placeholder: "enter password...",
+        lable: "Password :- "
+    },
+]
 
 const Login = () => {
     const navigate = useNavigate()
@@ -19,7 +37,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(inputField);
+        // console.log(inputField);'
         navigate('/')
         setInputField({
             email: '',
@@ -35,14 +53,11 @@ const Login = () => {
                     <h1 className="login_title">Log In</h1>
 
                     <form className="login_form" onSubmit={handleSubmit}>
-                        <div className="input-div">
-                            <label>Email id :- </label>
-                            <input type="email" placeholder="enter email..." name="email" value={inputField.email} onChange={handleChange} />
-                        </div>
-                        <div className="input-div">
-                            <label>Password :- </label>
-                            <input type="password" placeholder="enter password..." name="password" value={inputField.password} onChange={handleChange} />
-                        </div>
+                        {
+                            inputs.map((input) => (
+                                <InputField key={input.id} name={input.name} type={input.type} placeholder={input.placeholder} lable={input.lable} value={inputField[input.name]} handleChange={handleChange} />
+                            ))
+                        }
                         <button type="submit" className="login_btn" disabled={!inputField.password.length}>Login</button>
                     </form>
                 </div>
