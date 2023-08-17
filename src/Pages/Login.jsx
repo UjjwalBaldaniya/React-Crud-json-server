@@ -31,15 +31,15 @@ const Login = () => {
     return (
         <>
             <div className="employee-form">
-                <div class="login_container">
-                    <h1 class="login_title">Log In</h1>
+                <div className="login_container">
+                    <h1 className="login_title">Log In</h1>
 
                     <form className="login_form" onSubmit={handleSubmit}>
-                        <div class="input-div">
+                        <div className="input-div">
                             <label>Email id :- </label>
                             <input type="email" placeholder="enter email..." name="email" value={inputField.email} onChange={handleChange} />
                         </div>
-                        <div class="input-div">
+                        <div className="input-div">
                             <label>Password :- </label>
                             <input type="password" placeholder="enter password..." name="password" value={inputField.password} onChange={handleChange} />
                         </div>

@@ -8,13 +8,18 @@ import { FaEdit } from "react-icons/fa";
 const UserList = () => {
     const navigation = useNavigate()
     const [employeeData, setEmployeeData] = useState([]);
+    const [isError, setIsError] = useState('');
+
 
     const ApiData = async () => {
         try {
             const res = await axios.get('http://localhost:4000/employees')
             setEmployeeData(res.data)
+            console.log(res.data);
+
         } catch (error) {
             console.log(error);
+            setIsError(error.message)
         }
     }
 
@@ -44,6 +49,7 @@ const UserList = () => {
                     <h1 className="userlist-title"><u>Employee Data List</u></h1>
                     <button onClick={() => navigation('/addData')} className="userlist-btn">Add Employee Data</button>
 
+                    {isError !== "" && <h1>{isError}</h1>}
                     {employeeData.length > 0 ?
                         <table className="table">
                             <thead>
@@ -57,7 +63,7 @@ const UserList = () => {
                             </thead>
                             <tbody>
                                 {employeeData.map((element) => (
-                                    <tr>
+                                    <tr key={element.id}>
                                         <td>{element.name}</td>
                                         <td>{element.location}</td>
                                         <td>{element.designation}</td>

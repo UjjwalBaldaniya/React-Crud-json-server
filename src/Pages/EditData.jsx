@@ -6,11 +6,16 @@ import axios from "axios";
 const EditData = () => {
     const params = useParams()
     const navigation = useNavigate()
-    const [inputField, setInputField] = useState('');
+    const [inputField, setInputField] = useState([]);
 
     const fetchData = async () => {
-        const res = await axios.get(`http://localhost:4000/employees/${params.id}`)
-        setInputField(res.data)
+        try {
+            const res = await axios.get(`http://localhost:4000/employees/${params.id}`)
+            setInputField(res.data)
+            console.log(res.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     useEffect(() => {
@@ -40,11 +45,18 @@ const EditData = () => {
         })
     }
 
+    const handleNavigate = () => {
+        navigation('/')
+    }
+
     return (
         <>
-            <FormTable handleSubmit={handleSubmit} handleChange={handleChange} inputField={inputField} name={'Edit'} />
+            <FormTable handleSubmit={handleSubmit} handleChange={handleChange} inputField={inputField} name={'Edit'} handleNavigate={handleNavigate} />
         </>
     )
 };
 
 export default EditData;
+
+
+// export const getEmployee=(id)=>`http://localhost:4000/employees${id}`
