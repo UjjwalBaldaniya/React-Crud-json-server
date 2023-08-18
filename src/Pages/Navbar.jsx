@@ -1,6 +1,6 @@
 import React from "react";
 import '../Styles/navbar.css'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -26,6 +26,7 @@ const Navbar = () => {
                     <h2 onClick={handleClick}>Log Out</h2>
                 </div>
             </div>
+            <Outlet />
         </>
     )
 };

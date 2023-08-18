@@ -15,7 +15,7 @@ const EditData = () => {
 
     const fetchData = async () => {
         try {
-            const res = await axios.get(`${getUrl}/employees/${params.id}`)
+            const res = await axios.get(`${getUrl}/${params.id}`)
             setInputField(res.data)
             // console.log(res.data);
         } catch (error) {
@@ -29,7 +29,7 @@ const EditData = () => {
 
     const updateData = async () => {
         try {
-            const res = await axios.patch(`${getUrl}/employees/${params.id}`, inputField)
+            const res = await axios.patch(`${getUrl}/${params.id}`, inputField)
             console.log(res);
         } catch (error) {
             console.log(error);

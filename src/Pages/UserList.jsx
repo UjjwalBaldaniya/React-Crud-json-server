@@ -7,17 +7,37 @@ import { FaEdit } from "react-icons/fa";
 import { getUrl } from "../Services/Employees";
 
 const UserList = () => {
+    const tableHading = [
+        {
+            id: 1,
+            name: "Name"
+        },
+        {
+            id: 2,
+            name: "Location"
+        },
+        {
+            id: 3,
+            name: "Designation"
+        },
+        {
+            id: 4,
+            name: "Update"
+        },
+        {
+            id: 5,
+            name: "Delete"
+        },
+    ]
     const navigation = useNavigate()
     const [employeeData, setEmployeeData] = useState([]);
     const [isError, setIsError] = useState('');
 
-
     const ApiData = async () => {
         try {
-            const res = await axios.get(`${getUrl}/employees`)
+            const res = await axios.get(`${getUrl}`)
             setEmployeeData(res.data)
             // console.log(res.data);
-
         } catch (error) {
             console.log(error);
             setIsError(error.message)
@@ -26,7 +46,7 @@ const UserList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${getUrl}/employees/${id}`)
+            await axios.delete(`${getUrl}/${id}`)
         } catch (error) {
             console.log(error);
         }
@@ -55,11 +75,9 @@ const UserList = () => {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Location</th>
-                                    <th>Designation</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    {tableHading.map((hading) => (
+                                        <th key={hading.id}>{hading.name}</th>
+                                    ))}
                                 </tr>
                             </thead>
                             <tbody>

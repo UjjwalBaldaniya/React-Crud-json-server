@@ -29,7 +29,7 @@ const AddData = () => {
 
     const postData = async () => {
         try {
-            const postEmpData = await axios.post(`${getUrl}/employees`, inputField)
+            const postEmpData = await axios.post(`${getUrl}`, inputField)
             console.log(postEmpData);
         } catch (error) {
             console.log(error);

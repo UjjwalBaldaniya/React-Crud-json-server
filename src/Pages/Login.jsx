@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../Styles/login.css'
 import { useNavigate } from "react-router-dom";
 import InputField from "../Components/InputField";
+import Navbar from "./Navbar";
 
 const inputs = [
     {
@@ -48,6 +49,7 @@ const Login = () => {
 
     return (
         <>
+            <Navbar />
             <div className="employee-form">
                 <div className="login_container">
                     <h1 className="login_title">Log In</h1>
