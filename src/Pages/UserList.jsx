@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import '../Styles/uselist.css'
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
-import { getUrl } from "../Services/Employees";
+import { deleteEmployee, getEmployee } from "../Services/Api";
 
 const UserList = () => {
     const tableHading = [
@@ -33,35 +32,23 @@ const UserList = () => {
     const [employeeData, setEmployeeData] = useState([]);
     const [isError, setIsError] = useState('');
 
-    const ApiData = async () => {
-        try {
-            const res = await axios.get(`${getUrl}`)
-            setEmployeeData(res.data)
-            // console.log(res.data);
-        } catch (error) {
-            console.log(error);
-            setIsError(error.message)
-        }
-    }
-
     const handleDelete = async (id) => {
-        try {
-            await axios.delete(`${getUrl}/${id}`)
-        } catch (error) {
-            console.log(error);
-        }
+        deleteEmployee(id)
         const deleteData = employeeData.filter((element) => element.id !== id)
         setEmployeeData(deleteData)
     }
 
     const handleEdit = (id) => {
-        // console.log(id);
         navigation(`/editData/${id}`)
     }
 
     useEffect(() => {
-        ApiData()
-    }, [])
+        getEmployee().then((res) => {
+            setEmployeeData(res.data)
+        }).catch((error) => {
+            setIsError(error.message)
+        })
+    }, [employeeData])
 
     return (
         <>

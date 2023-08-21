@@ -3,21 +3,18 @@ import InputField from "./InputField";
 
 const inputs = [
     {
-        id: 1,
         name: "name",
         type: "text",
         placeholder: "Enter name",
         lable: "Name of Employee :- "
     },
     {
-        id: 2,
         name: "location",
         type: "text",
         placeholder: "Enter location",
         lable: "location :- "
     },
     {
-        id: 3,
         name: "designation",
         type: "text",
         placeholder: "Enter designation",
@@ -34,8 +31,8 @@ const FormTable = ({ handleSubmit, handleChange, inputField, btnName, disabled, 
 
                     <form id="form" onSubmit={handleSubmit}>
                         {
-                            inputs.map((input) => (
-                                <InputField key={input.id} name={input.name} type={input.type} placeholder={input.placeholder} lable={input.lable} value={inputField[input.name]} handleChange={handleChange} />
+                            inputs.map((input,index) => (
+                                <InputField key={index+1} name={input.name} type={input.type} placeholder={input.placeholder} lable={input.lable} value={inputField[input.name]} handleChange={handleChange} />
                             ))
                         }
                         <button type="submit" className="btn" disabled={disabled}>{btnName} Employee Data</button>

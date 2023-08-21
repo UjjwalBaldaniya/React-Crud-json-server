@@ -1,11 +1,11 @@
 import React from "react";
 
-const InputField = ({ lable, handleChange, name, type, placeholder, value, }) => {
+const InputField = ({ lable, handleChange, ...rest }) => {
     return (
         <>
             <div className="input-div">
                 <label>{lable}</label>
-                <input name={name} type={type} placeholder={placeholder} value={value} onChange={handleChange} />
+                <input onChange={handleChange} {...rest}/>
             </div>
         </>
     )

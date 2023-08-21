@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import '../Styles/form.css'
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import FormTable from "../Components/FormTable";
-import { getUrl } from "../Services/Employees";
+import { postEmployee } from "../Services/Api";
 
 const AddData = () => {
     const navigation = useNavigate()
@@ -22,20 +21,10 @@ const AddData = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log(inputField);
         navigation('/')
-        postData()
+        postEmployee(inputField)
     }
-
-    const postData = async () => {
-        try {
-            const postEmpData = await axios.post(`${getUrl}`, inputField)
-            console.log(postEmpData);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+    
     const handleNavigate = () => {
         navigation('/home')
     }
